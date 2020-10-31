@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Webpage Title -->
+    <title>버스data</title>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+
+        .img {
+            background-image: url('https://www.conscious-skincare.com/wp-content/uploads/2016/02/glc-candle-lit-with-new-gift-box.jpg');
+            background-size: cover;
+            background-position: center;
+            width: 500px;
+            height: 300px;
+        }
+
+        .info {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1, h5 {
+            display: inline;
+        }
+
+        .order {
+            text-align: center;
+        }
+
+        .orders {
+            margin-top: 100px;
+        }
+    </style>
+
+    <script>
+
+        var xhr = new XMLHttpRequest();
+        var url = 'http://ws.bus.go.kr/api/rest/buspos/getLowBusPosByRtid'; /*URL*/
+        var queryParams = '?' + encodeURIComponent('ServiceKey') + '=' + 'RV5mUE1%2FFTlhFGy3Hj%2BIouPPEOIS8sGXfYLdRZN1qHLxcMl7OeaRPjm4gilDNnObPMYk5C3afhWKdW7X4kcWAw%3D%3D'; /*Service Key*/
+        queryParams += '&' + encodeURIComponent('busRouteId') + '=' + encodeURIComponent(''); /**/
+        xhr.open('GET', url + queryParams);
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                alert('Status: ' + this.status + 'nHeaders: ' + JSON.stringify(this.getAllResponseHeaders()) + 'nBody: ' + this.responseText);
+            }
+        };
+        xhr.send('');
+
+        function order() {
+            // order-name
+            let busId = $('#bus_data').val();
+
+            // alert
+            if (busId == "") {
+                alert("버스 노선을 입력하세요");
+            }
+        }
+
+        $(document).ready(function () {
+            $('#bus_data')
+        })
+
+        $.ajax({
+            type: "GET",
+            // url: "http://ws.bus.go.kr/api/rest/buspos",
+            // url: "http://ws.bus.go.kr/api/rest/buspos/getLowBusPosByRtid?ServiceKey=RV5mUE1%2FFTlhFGy3Hj%2BIouPPEOIS8sGXfYLdRZN1qHLxcMl7OeaRPjm4gilDNnObPMYk5C3afhWKdW7X4kcWAw%3D%3D&busRouteId=100100118",
+            url: "http://ws.bus.go.kr/api/rest/buspos/getLowBusPosByRtid?ServiceKey=asdf&busRouteId=100100118",
+            data: {},
+            success: function (response) {
+
+                console.log(response)
+                // console.log(response[1]['rate'])
+                // console.log(response[1]['date'])
+                // let exRate = response[1]['rate']
+                // let exTime = response[1]['date']
+                // $('#bus_data').append(exRate);
+            }
+        })
+
+
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <div class="info">
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">버스 정보 입력</span>
+            <span id="bus_data"></span>
+
+          </div>
+          <input type="text" class="form-control" id="order-name">
+        </div>
+
+
+        <div class="order">
+          <button onclick="order()" type="button" class="btn btn-primary">버스 정보 확인</button>
+        </div>
+      </div>
+      <div class="orders">
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+
+공공데이터 : 실시간 버스 정보 일반 인증키 (UTF-8)
+RV5mUE1%2FFTlhFGy3Hj%2BIouPPEOIS8sGXfYLdRZN1qHLxcMl7OeaRPjm4gilDNnObPMYk5C3afhWKdW7X4kcWAw%3D%3D
+
+url: http://ws.bus.go.kr/api/rest/buspos/getLowBusPosByRtid
+요청 변수: busRouteId
+
